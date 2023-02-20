@@ -57,13 +57,52 @@ class MainCollectionViewController: UICollectionViewController {
         let userAction = userActions[indexPath.item]
         print(userAction)
         
+//        switch userAction {
+//        case .exampleOne, .exampleTwo, .exampleThree, .exampleFour:
+//            exampleButtonPressed(userAction: userAction)
+//        case .downloadImage:
+//            //Collection VC
+//            let imageVC = ImageViewController()
+//            imageVC.title = "Image VC"
+//            imageVC.navigationItem.largeTitleDisplayMode = .always
+//
+//            //Presenting VC
+//            show(imageVC, sender: nil)
+//        case .ourCourses:
+//            //Collection VC
+//            let coursesVC = CoursesViewController()
+//            coursesVC.title = "Courses VC"
+//            coursesVC.navigationItem.largeTitleDisplayMode = .always
+//            coursesVC.fetchCourses()
+//
+//            //Presenting VC
+//            show(coursesVC, sender: nil)
+//        case .exampleSimpsons:
+//            //Collection VC
+//            let sympsonVC = SympsonsViewController()
+//            sympsonVC.title = "Sympsons VC"
+//            sympsonVC.navigationItem.largeTitleDisplayMode = .always
+//            sympsonVC.fetchSympsons()
+//
+//            //Presenting VC
+//            show(sympsonVC, sender: nil)
+//        case .weather:
+//            //Collection VC
+//            let weatherVC = WeatherViewController()
+//            weatherVC.title = "Weather VC"
+//            weatherVC.navigationItem.largeTitleDisplayMode = .always
+//
+//            //Presenting VC
+//            show(weatherVC, sender: nil)
+//        }
+        
         switch userAction {
             case .downloadImage:
                 //Collection VC
                 let imageVC = ImageViewController()
                 imageVC.title = "Image VC"
                 imageVC.navigationItem.largeTitleDisplayMode = .always
-            
+
                 //Presenting VC
                 show(imageVC, sender: nil)
             case .exampleOne:
@@ -75,13 +114,12 @@ class MainCollectionViewController: UICollectionViewController {
             case .exampleFour:
                 exampleFourButtonPressed()
             case .exampleSimpsons:
-                //exampleSimpsonsButtonPressed()
                 //Collection VC
                 let sympsonVC = SympsonsViewController()
                 sympsonVC.title = "Sympsons VC"
                 sympsonVC.navigationItem.largeTitleDisplayMode = .always
                 sympsonVC.fetchSympsons()
-            
+
                 //Presenting VC
                 show(sympsonVC, sender: nil)
             case .ourCourses:
@@ -90,7 +128,7 @@ class MainCollectionViewController: UICollectionViewController {
                 coursesVC.title = "Courses VC"
                 coursesVC.navigationItem.largeTitleDisplayMode = .always
                 coursesVC.fetchCourses()
-            
+
                 //Presenting VC
                 show(coursesVC, sender: nil)
             case .weather:
@@ -98,7 +136,7 @@ class MainCollectionViewController: UICollectionViewController {
                 let weatherVC = WeatherViewController()
                 weatherVC.title = "Weather VC"
                 weatherVC.navigationItem.largeTitleDisplayMode = .always
-            
+
                 //Presenting VC
                 show(weatherVC, sender: nil)
         }
@@ -106,12 +144,20 @@ class MainCollectionViewController: UICollectionViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setUpNavigationItems()
+        collectionViewInit()
+    }
+    
+    private func setUpNavigationItems() {
+        navigationItem.backButtonTitle = "Collection"
+        navigationItem.title = "Main Collection"
+    }
+    
+    private func collectionViewInit() {
         collectionView?.backgroundColor = .systemGray
         collectionView.dataSource = self
         collectionView.delegate = self
         collectionView!.register(UserActionCell.self, forCellWithReuseIdentifier: "cell")
-        navigationItem.backButtonTitle = "Collection"
-        navigationItem.title = "Main Collection"
     }
 
 //    // MARK: - Private Methods
@@ -138,11 +184,35 @@ class MainCollectionViewController: UICollectionViewController {
 
 // MARK: - Networking
 extension MainCollectionViewController {
+//    private func exampleButtonPressed(userAction: UserActions) {
+//        let urlString: String
+//
+//        guard let url = URL(string: urlString) else {
+//                    return
+//                }
+//
+//                URLSession.shared.dataTask(with: url) { data, _, _ in
+//                    guard let data = data else { return }
+//                    do {
+//                        let course = try JSONDecoder().decode(/*Course.self*/, from: data)
+//                        print(course)
+//                        DispatchQueue.main.async {
+//                            self.successAlert()
+//                        }
+//                    } catch let error {
+//                        print(error)
+//                        DispatchQueue.main.async {
+//                            self.failedAlert()
+//                        }
+//                    }
+//                }.resume()
+//    }
+    
     private func exampleOneButtonPressed() {
         guard let url = URL(string: URLExamples.exampleOne.rawValue) else {
             return
         }
-        
+
         URLSession.shared.dataTask(with: url) { data, _, _ in
             guard let data = data else { return }
             do {
@@ -164,7 +234,7 @@ extension MainCollectionViewController {
         guard let url = URL(string: URLExamples.exampleTwo.rawValue) else {
             return
         }
-        
+
         URLSession.shared.dataTask(with: url) { data, _, _ in
             guard let data = data else { return }
             do {
@@ -214,29 +284,6 @@ extension MainCollectionViewController {
             do {
                 let course = try JSONDecoder().decode(WebsiteDescription.self, from: data)
                 print(course)
-                DispatchQueue.main.async {
-                    self.successAlert()
-                }
-            } catch let error {
-                print(error.localizedDescription)
-                DispatchQueue.main.async {
-                    self.failedAlert()
-                }
-            }
-        }.resume()
-    }
-    
-    private func exampleSimpsonsButtonPressed() {
-        guard let url = URL(string: URLExamples.exampleSimpsons.rawValue) else {
-            return
-        }
-        
-        URLSession.shared.dataTask(with: url) { data, response, error in
-            guard let data = data else { return }
-            do {
-                let simpsons = try JSONDecoder().decode(Sympsons.self, from: data)
-                print(data)
-                print(simpsons)
                 DispatchQueue.main.async {
                     self.successAlert()
                 }

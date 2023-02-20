@@ -8,7 +8,7 @@
 import Foundation
 
 // MARK: - Sympson
-struct Sympson: Decodable {
+struct Sympson: Codable {
     let quote, character: String?
     let image: String?
     let characterDirection: String?

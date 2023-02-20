@@ -19,6 +19,8 @@
 		75C5706E2998148300639F2C /* Course.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75C5706D2998148300639F2C /* Course.swift */; };
 		75E40FC9299FABA0003EADAF /* NetworkWeatherManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75E40FC8299FABA0003EADAF /* NetworkWeatherManager.swift */; };
 		75E40FCB299FAD6B003EADAF /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75E40FCA299FAD6B003EADAF /* Constants.swift */; };
+		75E40FCD299FB728003EADAF /* CurrentWeatherData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75E40FCC299FB728003EADAF /* CurrentWeatherData.swift */; };
+		75E40FCF299FFB3A003EADAF /* CurrentWeather.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75E40FCE299FFB3A003EADAF /* CurrentWeather.swift */; };
 		75E44BB92992CE0800A9F344 /* UserActionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75E44BB82992CE0800A9F344 /* UserActionCell.swift */; };
 		75F729262996A634000448D1 /* ImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75F729252996A634000448D1 /* ImageViewController.swift */; };
 		75F729282996AA7F000448D1 /* CoursesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75F729272996AA7F000448D1 /* CoursesViewController.swift */; };
@@ -40,6 +42,8 @@
 		75C5706D2998148300639F2C /* Course.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Course.swift; sourceTree = "<group>"; };
 		75E40FC8299FABA0003EADAF /* NetworkWeatherManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkWeatherManager.swift; sourceTree = "<group>"; };
 		75E40FCA299FAD6B003EADAF /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		75E40FCC299FB728003EADAF /* CurrentWeatherData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentWeatherData.swift; sourceTree = "<group>"; };
+		75E40FCE299FFB3A003EADAF /* CurrentWeather.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentWeather.swift; sourceTree = "<group>"; };
 		75E44BB82992CE0800A9F344 /* UserActionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserActionCell.swift; sourceTree = "<group>"; };
 		75F729252996A634000448D1 /* ImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewController.swift; sourceTree = "<group>"; };
 		75F729272996AA7F000448D1 /* CoursesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoursesViewController.swift; sourceTree = "<group>"; };
@@ -89,6 +93,8 @@
 				753E5E192992858C00FA5E7C /* Info.plist */,
 				75A1737B299BB5A300E86796 /* WeatherViewController.swift */,
 				75E40FC8299FABA0003EADAF /* NetworkWeatherManager.swift */,
+				75E40FCC299FB728003EADAF /* CurrentWeatherData.swift */,
+				75E40FCE299FFB3A003EADAF /* CurrentWeather.swift */,
 				75E40FCA299FAD6B003EADAF /* Constants.swift */,
 				75A1737F299BC36E00E86796 /* SympsonsViewController.swift */,
 				75A17381299BC3D000E86796 /* SympsonsCell.swift */,
@@ -169,6 +175,8 @@
 			files = (
 				75C5706E2998148300639F2C /* Course.swift in Sources */,
 				75A1737C299BB5A300E86796 /* WeatherViewController.swift in Sources */,
+				75E40FCF299FFB3A003EADAF /* CurrentWeather.swift in Sources */,
+				75E40FCD299FB728003EADAF /* CurrentWeatherData.swift in Sources */,
 				75F729282996AA7F000448D1 /* CoursesViewController.swift in Sources */,
 				75E44BB92992CE0800A9F344 /* UserActionCell.swift in Sources */,
 				75A17380299BC36E00E86796 /* SympsonsViewController.swift in Sources */,
