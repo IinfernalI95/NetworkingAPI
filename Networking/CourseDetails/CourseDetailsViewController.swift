@@ -9,16 +9,27 @@
 import SwiftUI
 
 struct CourseDetailsViewController: View {
-    
+    @State private var isButtonTapped = false
     var viewModel: CourseDetailsViewModelProtocol!
-    
     var body: some View {
         VStack {
             Text(viewModel.courseName)
                 .font(.largeTitle)
-                        
             VStack(alignment: .leading, spacing: 20) {
-                CourseImage(imageData: viewModel.imageData)
+                ZStack {
+                    CourseImage(viewModel: viewModel)
+                    Button {
+                        viewModel.favoriteButtonPressed()
+                        isButtonTapped = viewModel.isFavorite
+                    } label: {
+                        Image(systemName: "heart.fill")
+                            .resizable()
+                            .frame(width: 30, height: 30)
+                    }
+                    .position(x: 120, y: 100)
+                    .frame(width: 35, height: 35)
+                    .foregroundColor(isButtonTapped ? .red : .gray)
+                }
                 HStack {
                     Text("\(viewModel.numberOfLessons)")
                 }
@@ -34,18 +45,25 @@ struct CourseDetailsViewController: View {
             Spacer()
         }.padding(.top)
     }
+    
+    private func setStatusForFavoriteButton() {
+        isButtonTapped = viewModel.isFavorite
+    }
 }
 
 struct CourseImage: View {
     
-    let imageData: Data?
+    let viewModel: CourseDetailsViewModelProtocol
     
     var body: some View {
-        getImage(from: imageData)
-            .resizable()
-            .cornerRadius(30)
-            .frame(width: 230, height: 180)
+        ZStack {
+            getImage(from: viewModel.imageData)
+                .resizable()
+                .cornerRadius(30)
+                .frame(width: 230, height: 180)
             .shadow(radius: 10)
+            
+        }
     }
     
     private func getImage(from imageData: Data?) -> Image {
@@ -53,6 +71,8 @@ struct CourseImage: View {
             guard let image = UIImage(data: imageData) else { return Image(systemName: "xmark.shield") }
             return Image(uiImage: image)
     }
+    
+    
 }
 
 struct ContentView_Previews: PreviewProvider {

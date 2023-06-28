@@ -13,56 +13,97 @@ class NetworkManager {
     
     private init() {}
     
-    func exampleOneButtonPressed() {
+    func exampleOneButtonPressed(completion: @escaping (Result<Course, Error>) -> Void) {
         guard let url = URL(string: URLExamples.exampleOne.rawValue) else {
             return
         }
 
         URLSession.shared.dataTask(with: url) { data, _, _ in
-            guard let data = data else { return }
+            guard let data = data else {
+                let errorData = NSError(
+                    domain: "com.example.network",
+                    code: 0,
+                    userInfo: [NSLocalizedDescriptionKey: "No data received"])
+                
+                completion(.failure(errorData))
+                
+                return
+            }
             do {
                 let course = try JSONDecoder().decode(Course.self, from: data)
                 print(course)
+                completion(.success(course)) //🔴
             } catch let error {
                 print(error)
+                completion(.failure(error))
             }
         }.resume()
     }
     
-    func exampleTwoButtonPressed() {
+    func exampleTwoButtonPressed(completion: @escaping (Result<[Course], Error>) -> Void) { //🔴
         guard let url = URL(string: URLExamples.exampleTwo.rawValue) else {
             return
         }
 
         URLSession.shared.dataTask(with: url) { data, _, _ in
-            guard let data = data else { return }
+            guard let data = data else {
+                let errorData = NSError(
+                    domain: "com.example.network",
+                    code: 0,
+                    userInfo: [NSLocalizedDescriptionKey: "No data received"]
+                )
+
+                completion(.failure(errorData))
+
+                return
+            }
             do {
                 let course = try JSONDecoder().decode([Course].self, from: data)
                 print(course)
+                completion(.success(course)) //🔴🟡🔴
             } catch let error {
                 print(error)
+                completion(.failure(error))
             }
         }.resume()
     }
     
-    func exampleThreeButtonPressed() {
+    func exampleThreeButtonPressed(completion: @escaping (Result<WebsiteDescription, Error>) -> Void) {
         guard let url = URL(string: URLExamples.exampleThree.rawValue) else {
             return
         }
 
         URLSession.shared.dataTask(with: url) { data, _, _ in
-            guard let data = data else { return }
+            guard let data = data else {
+                let errorData = NSError(
+                    domain: "com.example.network",
+                    code: 0,
+                    userInfo: [NSLocalizedDescriptionKey: "No data received"]
+                )
+
+                completion(.failure(errorData))
+
+                return
+            }
             do {
                 let course = try JSONDecoder().decode(WebsiteDescription.self, from: data)
                 print(course)
+                completion(.success(course))
             } catch let error {
-                print(error)
+                completion(.failure(error))
             }
         }.resume()
     }
     
-    func exampleFourButtonPressed() {
+    func exampleFourButtonPressed(completion: @escaping (Result<WebsiteDescription, Error>) -> Void) {
         guard let url = URL(string: URLExamples.exampleFour.rawValue) else {
+            let errorData = NSError(
+                domain: "com.example.network",
+                code: 0,
+                userInfo: [NSLocalizedDescriptionKey: "No data received"])
+            
+            completion(.failure(errorData))
+            
             return
         }
 
@@ -71,14 +112,25 @@ class NetworkManager {
             do {
                 let course = try JSONDecoder().decode(WebsiteDescription.self, from: data)
                 print(course)
+                completion(.success(course))
             } catch let error {
                 print(error.localizedDescription)
+                completion(.failure(error))
             }
         }.resume()
     }
     
-    func postRequestWithDict() {
-        guard let url = URL(string: URLExamples.postRequest.rawValue) else { return }                               // ⬇️
+    func postRequestWithDict(completion: @escaping (Result<Data, Error>) -> Void) { //🔴 Data
+        guard let url = URL(string: URLExamples.postRequest.rawValue) else {
+            let errorData = NSError(
+                domain: "com.example.network",
+                code: 0,
+                userInfo: [NSLocalizedDescriptionKey: "No data received"])
+            
+            completion(.failure(errorData))
+            
+            return
+        }                               // ⬇️
         let course = ["name": "Test",
                       "imageUrl": URLExamples.imageURL.rawValue,
                       "numberOfLessons": "10",
@@ -102,15 +154,26 @@ class NetworkManager {
                 DispatchQueue.main.async {
                     print("DESERIALIZE ->")
                     print(course)
+                    completion(.success(data)) //🔴 вместо course - data
                 }
             } catch let error {
                 print(error.localizedDescription)
+                completion(.failure(error))
             }
         }.resume()
     }
     
-    func postRequestWithModel() {
-        guard let url = URL(string: URLExamples.postRequest.rawValue) else { return }
+    func postRequestWithModel(completion: @escaping (Result<Data, Error>) -> Void) {
+        guard let url = URL(string: URLExamples.postRequest.rawValue) else {
+            let errorData = NSError(
+                domain: "com.example.network",
+                code: 0,
+                userInfo: [NSLocalizedDescriptionKey: "No data received"])
+            
+            completion(.failure(errorData))
+            
+            return
+        }
         let course = CourseV3(name: "Test",
                               imageUrl: URLExamples.imageURL.rawValue,
                               numberOfLessons: "10",
@@ -134,9 +197,11 @@ class NetworkManager {
                 DispatchQueue.main.async {
                     print("DESERIALIZE ->")
                     print(course)
+                    completion(.success(data)) //🔴🟡⛔️ -> as!
                 }
             } catch let error {
                 print(error.localizedDescription)
+                completion(.failure(error))
             }
         }.resume()
     }

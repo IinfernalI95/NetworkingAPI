@@ -15,6 +15,7 @@ protocol CourseDetailsViewModelProtocol {
     var isFavorite: Bool { get }
     var viewModelDidChange: ((CourseDetailsViewModelProtocol) -> Void)? { get set }
     init(course: CourseV3)
+    func favoriteButtonPressed()
 }
 
 class CourseDetailsViewModel: CourseDetailsViewModelProtocol {

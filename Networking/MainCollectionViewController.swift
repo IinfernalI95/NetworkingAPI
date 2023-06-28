@@ -160,88 +160,79 @@ class MainCollectionViewController: UICollectionViewController {
 extension MainCollectionViewController {
     
     private func exampleOneButtonPressed() {
-        DispatchQueue.main.async {
-            do {
-                NetworkManager.shared.exampleOneButtonPressed()
+        NetworkManager.shared.exampleOneButtonPressed() { result in
+            DispatchQueue.main.async {
+                switch result {
+                case .success:
                     self.successAlert()
-            } catch {
-                self.failedAlert()
+                case .failure:
+                    self.failedAlert()
+                }
             }
         }
-        
-//        guard let url = URL(string: URLExamples.exampleOne.rawValue) else {
-//            return
-//        }
-//
-//        URLSession.shared.dataTask(with: url) { data, _, _ in
-//            guard let data = data else { return }
-//            do {
-//                let course = try JSONDecoder().decode(Course.self, from: data)
-//                print(course)
-//                DispatchQueue.main.async {
-//                    self.successAlert()
-//                }
-//            } catch let error {
-//                print(error)
-//                DispatchQueue.main.async {
-//                    self.failedAlert()
-//                }
-//            }
-//        }.resume()
     }
 
     private func exampleTwoButtonPressed() {
-        
-        DispatchQueue.main.async {
-            do {
-                NetworkManager.shared.exampleTwoButtonPressed()
+        NetworkManager.shared.exampleTwoButtonPressed() { result in
+            DispatchQueue.main.async {
+                switch result {
+                case .success:
                     self.successAlert()
-            } catch {
-                self.failedAlert()
+                case .failure:
+                    self.failedAlert()
+                }
             }
         }
     }
 
     private func exampleThreeButtonPressed() {
-        DispatchQueue.main.async {
-            do {
-                NetworkManager.shared.exampleThreeButtonPressed()
+        NetworkManager.shared.exampleThreeButtonPressed() { result in
+            DispatchQueue.main.async {
+                switch result {
+                case .success:
                     self.successAlert()
-            } catch {
-                self.failedAlert()
+                case .failure:
+                    self.failedAlert()
+                }
             }
         }
     }
-
+    
     private func exampleFourButtonPressed() {
-        DispatchQueue.main.async {
-            do {
-                NetworkManager.shared.exampleFourButtonPressed()
+        NetworkManager.shared.exampleFourButtonPressed() { result in
+            DispatchQueue.main.async {
+                switch result {
+                case .success:
                     self.successAlert()
-            } catch {
-                self.failedAlert()
+                case .failure:
+                    self.failedAlert()
+                }
             }
         }
     }
     
     private func postRequestWithDict() {
-        DispatchQueue.main.async {
-            do {
-                NetworkManager.shared.postRequestWithDict()
+        NetworkManager.shared.postRequestWithDict() { result in
+            DispatchQueue.main.async {
+                switch result {
+                case .success:
                     self.successAlert()
-            } catch {
-                self.failedAlert()
+                case .failure:
+                    self.failedAlert()
+                }
             }
         }
     }
-        
+    
     private func postRequestWithModel() {
-        DispatchQueue.main.async {
-            do {
-                NetworkManager.shared.postRequestWithModel()
+        NetworkManager.shared.postRequestWithModel() { result in
+            DispatchQueue.main.async {
+                switch result {
+                case .success:
                     self.successAlert()
-            } catch {
-                self.failedAlert()
+                case .failure:
+                    self.failedAlert()
+                }
             }
         }
     }

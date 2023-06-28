@@ -103,21 +103,19 @@
 		753E5E0A2992858B00FA5E7C /* Networking */ = {
 			isa = PBXGroup;
 			children = (
-				753E5E0B2992858B00FA5E7C /* AppDelegate.swift */,
-				753E5E0D2992858B00FA5E7C /* SceneDelegate.swift */,
 				753E5E0F2992858B00FA5E7C /* MainCollectionViewController.swift */,
 				75F729252996A634000448D1 /* ImageViewController.swift */,
 				75B61EF02A4C63CC0060526B /* CoursesTable */,
 				75E44BB82992CE0800A9F344 /* UserActionCell.swift */,
-				75B61EED2A4C622C0060526B /* Services */,
-				75B61EEF2A4C638C0060526B /* Models */,
 				75B61EEE2A4C634E0060526B /* CourseDetails */,
 				758A118B29FEBEB200DA3D47 /* SwiftUIView.swift */,
-				753E5E142992858C00FA5E7C /* Assets.xcassets */,
-				753E5E162992858C00FA5E7C /* LaunchScreen.storyboard */,
-				753E5E192992858C00FA5E7C /* Info.plist */,
-				75ABE1B429AE1A990048F68C /* Weather */,
+				75B61EEF2A4C638C0060526B /* Models */,
+				75B61EED2A4C622C0060526B /* Services */,
+				75B61EF62A4C682A0060526B /* StoryBoard */,
+				75B61EF52A4C66D30060526B /* Supporting Files */,
 				75ABE1B529AE1AB50048F68C /* Sympsons */,
+				75ABE1B429AE1A990048F68C /* Weather */,
+				75B61EF42A4C66730060526B /* Resources */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -188,6 +186,32 @@
 				75B61EF22A4C648B0060526B /* CourseCellViewModel.swift */,
 			);
 			path = CourseTableViewCell;
+			sourceTree = "<group>";
+		};
+		75B61EF42A4C66730060526B /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				753E5E142992858C00FA5E7C /* Assets.xcassets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		75B61EF52A4C66D30060526B /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				753E5E0B2992858B00FA5E7C /* AppDelegate.swift */,
+				753E5E0D2992858B00FA5E7C /* SceneDelegate.swift */,
+				753E5E192992858C00FA5E7C /* Info.plist */,
+			);
+			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		75B61EF62A4C682A0060526B /* StoryBoard */ = {
+			isa = PBXGroup;
+			children = (
+				753E5E162992858C00FA5E7C /* LaunchScreen.storyboard */,
+			);
+			path = StoryBoard;
 			sourceTree = "<group>";
 		};
 		9E2E017B9B40FE40C178671B /* Frameworks */ = {
@@ -485,7 +509,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = Networking/Info.plist;
+				INFOPLIST_FILE = "Networking/Supporting Files/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -512,7 +536,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = Networking/Info.plist;
+				INFOPLIST_FILE = "Networking/Supporting Files/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
