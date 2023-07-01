@@ -13,8 +13,32 @@ class ImageManager {
     private init() {}
     
     func fetchImageData(from url: URL?) -> Data? {
-        guard let url = url else { return nil }
-        guard let imageData = try? Data(contentsOf: url) else { return nil }
+        guard let url = url else {
+            print("error on unwrap url")
+            return nil
+        }
+        guard let imageData = try? Data(contentsOf: url) else {
+            print("error on create data") //🔴
+            return nil
+        }
         return imageData
     }
+    
+    func fetchImageData(from url: URL?, completion: @escaping (Data?) -> Void) {
+            guard let url = url else {
+                print("Error: URL is nil")
+                completion(nil)
+                return
+            }
+            
+            URLSession.shared.dataTask(with: url) { data, response, error in
+                guard let imageData = data, error == nil else {
+                    print("Error fetching image data: \(error?.localizedDescription ?? "Unknown error")")
+                    completion(nil)
+                    return
+                }
+                
+                completion(imageData)
+            }.resume()
+        }
 }

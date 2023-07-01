@@ -7,17 +7,7 @@
 
 import SwiftUI
 
-enum URLExamples: String {
-    case imageURL = "https://applelives.com/wp-content/uploads/2016/03/iPhone-SE-11.jpeg"
-    case exampleOne = "https://swiftbook.ru//wp-content/uploads/api/api_course"
-    case exampleTwo = "https://swiftbook.ru//wp-content/uploads/api/api_courses"
-    case exampleThree = "https://swiftbook.ru//wp-content/uploads/api/api_website_description"
-    case exampleFour = "https://swiftbook.ru//wp-content/uploads/api/api_missing_or_wrong_fields"
-    case exampleSimpsons = "https://thesimpsonsquoteapi.glitch.me/quotes"
-    case exampleFive = "https://swiftbook.ru//wp-content/uploads/api/api_courses_capital"
-    case postRequest = "https://jsonplaceholder.typicode.com/posts"
-    case imageUrl = "https://swiftbook.ru/wp-content/uploads/sites/2/2018/08/notifications-course-with-background.png"
-}
+
 
 enum UserActions: String, CaseIterable {
     case downloadImage = "Download Image"
@@ -67,7 +57,7 @@ class MainCollectionViewController: UICollectionViewController {
         
         switch userAction {
             case .downloadImage:
-            let swiftUIController = UIHostingController(rootView: CourseDetailsViewController(viewModel: CourseDetailsViewModel(course: NetworkManager.shared.getCourseV3())))
+            let swiftUIController = UIHostingController(rootView: CourseDetailsViewController(viewModel: CourseDetailsViewModel(course: NetworkManager.shared.getCourse())))
                 presentVC(titleName: "Image VC", viewController: swiftUIController)
             case .exampleOne:
                 exampleOneButtonPressed()
@@ -83,8 +73,8 @@ class MainCollectionViewController: UICollectionViewController {
                 presentVC(titleName: "Sympsons VC", viewController: sympsonVC)
             case .ourCourses:
                 let coursesVC = CoursesViewController()
-                coursesVC.fetchCourses()
-                presentVC(titleName: "Courses VC", viewController: coursesVC)
+                //coursesVC.fetchCourses() 🔴
+                presentVC(titleName: "New Courses VC", viewController: coursesVC)
             case .weather:
                 presentVC(titleName: "Weather VC", viewController: WeatherViewController())
             case .ourCoursesV2:
@@ -95,18 +85,18 @@ class MainCollectionViewController: UICollectionViewController {
                 postRequestWithModel()
             case .alamofireGet:
                 let coursesVC = CoursesViewController()
-                coursesVC.alamofireGetButtonPressed()
+                //coursesVC.alamofireGetButtonPressed()
                 presentVC(titleName: "GET", viewController: coursesVC)
             case .alamofirePost:
                 let coursesVC = CoursesViewController()
-                coursesVC.alamofirePostButtonPressed()
+                //coursesVC.alamofirePostButtonPressed()
                 presentVC(titleName: "POST", viewController: coursesVC)
         }
     }
     
     private func presentVC(titleName: String, viewController: UIViewController) {
         if let vc = viewController as? CoursesViewController {
-            vc.fetchCourses()
+            //vc.fetchCourses()🔴
         }
         //Collection VC
         viewController.title = titleName

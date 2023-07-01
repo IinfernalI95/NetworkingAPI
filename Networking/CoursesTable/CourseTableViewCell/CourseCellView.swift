@@ -90,41 +90,16 @@ class CourseCellView: UITableViewCell {
         ])
     }
     
-    func configure(with course: Course) {
-        courseNameLabel.text = course.name ?? "nil"
-        numberOfTests.text = "Number Of Tests \(course.numberOfTests ?? "0")"
-        numberOfLessons.text = "Number Of Lessons \(course.numberOfLessons ?? "0")"
-
-        DispatchQueue.global().async {
-            guard let stringUrl = course.imageUrl,
-                  let imageURL = URL(string: stringUrl),
-                  let imageData = try? Data(contentsOf: imageURL) else {
-                return
-            }
-
-            DispatchQueue.main.async {
-                self.courseImage.image = UIImage(data: imageData)
+    var viewModel: CourseCellViewModelProtocol! {
+        didSet {
+            courseNameLabel.text = viewModel.courseName
+            numberOfTests.text = viewModel.numberOfTests
+            numberOfLessons.text = viewModel.numberOfLessons
+            
+            DispatchQueue.main.async { [unowned self] in
+                guard let imageData = viewModel.imageData else { return }
+                courseImage.image = UIImage(data: imageData)
             }
         }
-
     }
-    
-//    func configureV3(with course: CourseV3) {
-//        courseNameLabel.text = course.name
-//        numberOfTests.text = "Number Of Tests \(course.numberOfTests )"
-//        numberOfLessons.text = "Number Of Lessons \(course.numberOfLessons )"
-//
-//        DispatchQueue.global().async {
-//            guard let stringUrl = course.imageUrl,
-//                  let imageURL = URL(string: stringUrl),
-//                  let imageData = try? Data(contentsOf: imageURL) else {
-//                return
-//            }
-//
-//            DispatchQueue.main.async {
-//                self.courseImage.image = UIImage(data: imageData)
-//            }
-//        }
-//
-//    }
 }

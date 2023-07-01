@@ -14,46 +14,61 @@ protocol CourseDetailsViewModelProtocol {
     var imageData: Data? { get }
     var isFavorite: Bool { get }
     var viewModelDidChange: ((CourseDetailsViewModelProtocol) -> Void)? { get set }
-    init(course: CourseV3)
+    init(course: Course)
     func favoriteButtonPressed()
+    func fetchImageData()
 }
 
 class CourseDetailsViewModel: CourseDetailsViewModelProtocol {
     
-    private let course: CourseV3
+    private let course: Course
     
     var courseName: String {
-        course.name
+        guard let name = course.name else { return "" }
+        return name
     }
     
     var numberOfLessons: String {
-        "Number of lessons \(course.numberOfLessons)"
+        guard let numberOfLessons = course.numberOfLessons else { return "Number of lessons - no data" }
+        return "Number of lessons \(numberOfLessons)"
     }
     
     var numberOfTests: String {
-        "Number of tests: \(course.numberOfTests)"
+        guard let numberOfTests = course.numberOfTests else { return "Number of tests: - no data" }
+        return "Number of tests: \(numberOfTests)"
     }
     
-    var imageData: Data? { //🔴 не оч понятно
-        ImageManager.shared.fetchImageData(from: URL(string: course.imageUrl))
-    }
+    var imageData: Data? 
     
     var isFavorite: Bool { //🔴 не оч понятно
         get {
-            DataManager.shared.getFavoriteStatus(for: course.name)
+            DataManager.shared.getFavoriteStatus(for: course.name!)
         } set {
-            DataManager.shared.setFavoriteStatus(for: course.name, with: newValue)
+            DataManager.shared.setFavoriteStatus(for: course.name!, with: newValue)
             viewModelDidChange?(self)
         }
     }
     
     var viewModelDidChange: ((CourseDetailsViewModelProtocol) -> Void)?
     
-    required init(course: CourseV3) {
+    required init(course: Course) {
         self.course = course
     }
     
     func favoriteButtonPressed() {
         isFavorite.toggle()
+    }
+    
+    func fetchImageData() {
+        guard let url = course.imageUrl else {
+            print("Error: Image URL is nil")
+            return
+        }
+        
+        ImageManager.shared.fetchImageData(from: url) { data in
+            DispatchQueue.main.async {
+                self.imageData = data
+            }
+        }
     }
 }
