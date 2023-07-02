@@ -15,13 +15,13 @@
 		753E5E182992858C00FA5E7C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 753E5E162992858C00FA5E7C /* LaunchScreen.storyboard */; };
 		7581BD052A0012DF0050BF74 /* CourseDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7581BD042A0012DF0050BF74 /* CourseDetailsViewController.swift */; };
 		758A118C29FEBEB200DA3D47 /* SwiftUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 758A118B29FEBEB200DA3D47 /* SwiftUIView.swift */; };
+		759645D42A50AAB5007C7086 /* CourseDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 759645D32A50AAB5007C7086 /* CourseDetailsViewModel.swift */; };
 		75A1737C299BB5A300E86796 /* WeatherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75A1737B299BB5A300E86796 /* WeatherViewController.swift */; };
 		75A1737E299BC15600E86796 /* Sympson.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75A1737D299BC15600E86796 /* Sympson.swift */; };
 		75A17380299BC36E00E86796 /* SympsonsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75A1737F299BC36E00E86796 /* SympsonsViewController.swift */; };
 		75A17382299BC3D000E86796 /* SympsonsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75A17381299BC3D000E86796 /* SympsonsCell.swift */; };
 		75B61EE42A4B587D0060526B /* CoursesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75B61EE32A4B587D0060526B /* CoursesViewModel.swift */; };
 		75B61EE62A4B64840060526B /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75B61EE52A4B64840060526B /* NetworkManager.swift */; };
-		75B61EE82A4C54490060526B /* CourseDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75B61EE72A4C54490060526B /* CourseDetailsViewModel.swift */; };
 		75B61EEA2A4C58880060526B /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75B61EE92A4C58880060526B /* DataManager.swift */; };
 		75B61EEC2A4C5B520060526B /* ImageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75B61EEB2A4C5B520060526B /* ImageManager.swift */; };
 		75B61EF32A4C648B0060526B /* CourseCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75B61EF22A4C648B0060526B /* CourseCellViewModel.swift */; };
@@ -48,13 +48,13 @@
 		753E5E192992858C00FA5E7C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7581BD042A0012DF0050BF74 /* CourseDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseDetailsViewController.swift; sourceTree = "<group>"; };
 		758A118B29FEBEB200DA3D47 /* SwiftUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIView.swift; sourceTree = "<group>"; };
+		759645D32A50AAB5007C7086 /* CourseDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseDetailsViewModel.swift; sourceTree = "<group>"; };
 		75A1737B299BB5A300E86796 /* WeatherViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherViewController.swift; sourceTree = "<group>"; };
 		75A1737D299BC15600E86796 /* Sympson.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sympson.swift; sourceTree = "<group>"; };
 		75A1737F299BC36E00E86796 /* SympsonsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SympsonsViewController.swift; sourceTree = "<group>"; };
 		75A17381299BC3D000E86796 /* SympsonsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SympsonsCell.swift; sourceTree = "<group>"; };
 		75B61EE32A4B587D0060526B /* CoursesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoursesViewModel.swift; sourceTree = "<group>"; };
 		75B61EE52A4B64840060526B /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
-		75B61EE72A4C54490060526B /* CourseDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseDetailsViewModel.swift; sourceTree = "<group>"; };
 		75B61EE92A4C58880060526B /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		75B61EEB2A4C5B520060526B /* ImageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageManager.swift; sourceTree = "<group>"; };
 		75B61EF22A4C648B0060526B /* CourseCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseCellViewModel.swift; sourceTree = "<group>"; };
@@ -156,7 +156,7 @@
 			isa = PBXGroup;
 			children = (
 				7581BD042A0012DF0050BF74 /* CourseDetailsViewController.swift */,
-				75B61EE72A4C54490060526B /* CourseDetailsViewModel.swift */,
+				759645D32A50AAB5007C7086 /* CourseDetailsViewModel.swift */,
 			);
 			path = CourseDetails;
 			sourceTree = "<group>";
@@ -362,9 +362,9 @@
 				753E5E0C2992858B00FA5E7C /* AppDelegate.swift in Sources */,
 				75A1737E299BC15600E86796 /* Sympson.swift in Sources */,
 				75A17382299BC3D000E86796 /* SympsonsCell.swift in Sources */,
+				759645D42A50AAB5007C7086 /* CourseDetailsViewModel.swift in Sources */,
 				75B61EF32A4C648B0060526B /* CourseCellViewModel.swift in Sources */,
 				7581BD052A0012DF0050BF74 /* CourseDetailsViewController.swift in Sources */,
-				75B61EE82A4C54490060526B /* CourseDetailsViewModel.swift in Sources */,
 				75E40FCB299FAD6B003EADAF /* Constants.swift in Sources */,
 				75B61EEA2A4C58880060526B /* DataManager.swift in Sources */,
 				75F729262996A634000448D1 /* ImageViewController.swift in Sources */,

@@ -61,7 +61,6 @@ class CourseCellView: UITableViewCell {
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
-        //initCellView()
     }
     
     func initCellView() {

@@ -9,11 +9,9 @@
 import SwiftUI
 
 struct CourseDetailsViewController: View {
-    
-    @State private var isButtonTapped = false
-    @State private var imageData: Data?
-    
-    var viewModel: CourseDetailsViewModelProtocol!
+        
+    @ObservedObject
+    var viewModel: CourseDetailsViewModel
     
     var body: some View {
         VStack {
@@ -21,15 +19,13 @@ struct CourseDetailsViewController: View {
                 .font(.largeTitle)
             VStack(alignment: .leading, spacing: 20) {
                 ZStack {
-                    //CourseImage(imageData: viewModel.imageData)
-                    CourseImage(imageData: $imageData)
+                    CourseImage(imageData: $viewModel.imageData)
                         
                         .cornerRadius(30)
                         .frame(width: 230, height: 180)
                         .shadow(radius: 10)
                     Button {
                         viewModel.favoriteButtonPressed()
-                        isButtonTapped = viewModel.isFavorite
                     } label: {
                         Image(systemName: "heart.fill")
                             .resizable()
@@ -37,16 +33,16 @@ struct CourseDetailsViewController: View {
                     }
                     .position(x: 120, y: 100)
                     .frame(width: 35, height: 35)
-                    .foregroundColor(isButtonTapped ? .red : .gray)
+                    .foregroundColor(viewModel.isFavorite ? .red : .gray)
                     
                 }
                 HStack {
-                    Text("\(viewModel.numberOfLessons)")
+                    Text(viewModel.numberOfLessons)
                 }
                 .font(.headline)
                 
                 HStack {
-                    Text("\(viewModel.numberOfTests)")
+                    Text(viewModel.numberOfTests)
                 }
                 .font(.headline)
                 
@@ -56,16 +52,10 @@ struct CourseDetailsViewController: View {
         }
             .padding(.top)
             .onAppear {
-                viewModel.fetchImageData()
-                isButtonTapped = viewModel.isFavorite
-//                viewModel.viewModelDidChange = { [weak self] viewModel in
-//                    setStatusForFavoriteButton()
-//                }
+                Task {
+                    await viewModel.getImageData()
+                }
             }
-    }
-    
-    private func setStatusForFavoriteButton() {
-        isButtonTapped = viewModel.isFavorite
     }
 }
 
@@ -86,8 +76,8 @@ struct CourseImage: View {
     }
 }
 
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        CourseDetailsViewController(viewModel: CourseDetailsViewModel(course: NetworkManager.shared.getCourse()))
-    }
-}
+//struct ContentView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        CourseDetailsViewController(viewModel: CourseDetailsViewModel(course: NetworkManager.shared.getCourse()))
+//    }
+//}

@@ -1,36 +1,39 @@
 //
-//  ContentViewModel.swift
+//  CourseDetailsViewModel2.swift
 //  Networking
 //
-//  Created by Artur on 28.06.2023.
+//  Created by Artur on 01.07.2023.
 //
 
 import Foundation
 
-protocol CourseDetailsViewModelProtocol {
-    var courseName: String { get }
-    var numberOfLessons: String { get }
-    var numberOfTests: String { get }
-    var imageData: Data? { get }
-    var isFavorite: Bool { get }
-    var viewModelDidChange: ((CourseDetailsViewModelProtocol) -> Void)? { get set }
-    init(course: Course)
-    func favoriteButtonPressed()
-    func fetchImageData()
-}
-
-class CourseDetailsViewModel: CourseDetailsViewModelProtocol {
-    
+class CourseDetailsViewModel: ObservableObject {
+    let repository: ImageManager = ImageManager.shared
     private let course: Course
     
+    init(course: Course) {
+        self.course = course
+        self.isFavorite = DataManager.shared.getFavoriteStatus(for: self.course.name!)
+    }
+    
+    @Published
+    var imageData: Data?
+    
+    @Published
+    var isFavorite: Bool = false {
+        didSet {
+            DataManager.shared.setFavoriteStatus(for: course.name!, with: isFavorite)
+        }
+    }
+    
     var courseName: String {
-        guard let name = course.name else { return "" }
+        guard let name = course.name else { return "courseName - no data" }
         return name
     }
     
     var numberOfLessons: String {
         guard let numberOfLessons = course.numberOfLessons else { return "Number of lessons - no data" }
-        return "Number of lessons \(numberOfLessons)"
+        return "Number of lessons: \(numberOfLessons)"
     }
     
     var numberOfTests: String {
@@ -38,37 +41,13 @@ class CourseDetailsViewModel: CourseDetailsViewModelProtocol {
         return "Number of tests: \(numberOfTests)"
     }
     
-    var imageData: Data? 
-    
-    var isFavorite: Bool { //🔴 не оч понятно
-        get {
-            DataManager.shared.getFavoriteStatus(for: course.name!)
-        } set {
-            DataManager.shared.setFavoriteStatus(for: course.name!, with: newValue)
-            viewModelDidChange?(self)
-        }
-    }
-    
-    var viewModelDidChange: ((CourseDetailsViewModelProtocol) -> Void)?
-    
-    required init(course: Course) {
-        self.course = course
+    @MainActor //тот же Dispatch.main.async только для SwiftUI
+    func getImageData() async {
+        guard let url = course.imageUrl else { return }
+        imageData = try? await repository.downloadImage(fromURL: url)
     }
     
     func favoriteButtonPressed() {
         isFavorite.toggle()
-    }
-    
-    func fetchImageData() {
-        guard let url = course.imageUrl else {
-            print("Error: Image URL is nil")
-            return
-        }
-        
-        ImageManager.shared.fetchImageData(from: url) { data in
-            DispatchQueue.main.async {
-                self.imageData = data
-            }
-        }
     }
 }
